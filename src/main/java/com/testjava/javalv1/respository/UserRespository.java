@@ -2,6 +2,8 @@ package com.testjava.javalv1.respository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -13,6 +15,11 @@ import com.testjava.javalv1.entity.user.UserEntity;
 import jakarta.transaction.Transactional;
 
 public interface UserRespository extends JpaRepository<UserEntity, Long>, JpaSpecificationExecutor<UserEntity> {
+    //use pageable
+    Page<UserEntity> findByUserName(String nane, Pageable pageable);
+
+    Page<UserEntity> findAll(Pageable pageable);
+    
     UserEntity findByUserNameAndUserEmail(String userName, String userEmail);
 
     //where like %?%
